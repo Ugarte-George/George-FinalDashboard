@@ -58,7 +58,16 @@ ready(() => {
 
   }
   //*********** Oil ****************
+  let OILG = {num: 0}
+  let OILG_num = document.querySelector("#Oil100 tspan")
 
+
+
+  function OilHandler (){
+
+  OILG_num.textContent=OILG.num
+
+  }
 
   function init(){
     //***********  LogoStartTL init ****************
@@ -85,8 +94,6 @@ ready(() => {
     gsap.set(["#OILPercent"], {alpha: 0});
     gsap.set(["#FUELPercent"], {alpha: 0});
     gsap.set(["#MPH"], {alpha: 0});
-    gsap.set(["#Oil100"], {alpha: 0});
-
     gsap.set(["#MPH30"], {alpha: 0});
 
     //*********** Gauges2 init ****************
@@ -378,6 +385,40 @@ ready(() => {
       ; 
       return tl;
     }
+
+    //***********FuelNumbers2TL **************** (REV)
+
+    function FuelNumbers2TL(){
+      let tl = gsap.timeline();
+      tl.to (FUELG, {duration: 0.5,num: "-=55", roundProps: "num", onUpdate:FuelHandler})
+      
+        
+      ; 
+      return tl;
+    }
+
+      //***********OilNumbers1TL **************** (REV)
+
+      function OilNumbers1TL(){
+        let tl = gsap.timeline();
+        tl.from ("#Oil100", {duration: 0.25, alpha: 0})
+        tl.to (OILG, {duration: 0.5,num: "+=100", roundProps: "num", onUpdate:OilHandler})
+        
+          
+        ; 
+        return tl;
+      }
+
+    //***********OilNumbers2TL **************** (REV)
+
+      function OilNumbers2TL(){
+        let tl = gsap.timeline();
+        tl.to (OILG, {duration: 0.5,num: "-=30", roundProps: "num", onUpdate:OilHandler})
+        
+          
+        ; 
+        return tl;
+      }
     //*********** Numbers2TL **************** (SETTLE)
     function Numbers2TL(){
       let tl = gsap.timeline();
@@ -404,6 +445,7 @@ ready(() => {
         .add(BlinkersTL(),"-=3")
         .add(Numbers1TL(), "speed")
         .add(FuelNumbers1TL(), "speed")
+        .add(OilNumbers1TL(), "speed")
         .add(GaugesREVTL(), "speed")
         .add(FuelREVTL(), "speed")
         .add(OilREVTL(), "speed")
@@ -411,6 +453,8 @@ ready(() => {
         .add(FuelSETTLETL(),"-=1")
         .add(OilSETTLETL(),"-=1")
         .add(Numbers2TL(),"-=0.5")
+        .add(OilNumbers2TL(),"-=1")
+        .add(FuelNumbers2TL(),"-=1")
         
         
      
