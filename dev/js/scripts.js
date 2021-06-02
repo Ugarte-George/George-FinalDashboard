@@ -33,16 +33,31 @@ ready(() => {
   /* add your code here */
   let mainTL = gsap.timeline({id:"main"});
 
+    //*********** Speedometer ****************
+
   let PERC = {num: 0}
   let PERC_num = document.querySelector("#Speed200 tspan")
 
-  //***********  onUpdateFunction ****************
+
 
   function percentHandler (){
 
   PERC_num.textContent=PERC.num
 
   }
+
+  //*********** Fuel ****************
+  let FUELG = {num: 0}
+  let FUELG_num = document.querySelector("#Fuel100 tspan")
+
+
+
+  function FuelHandler (){
+
+  FUELG_num.textContent=FUELG.num
+
+  }
+  //*********** Oil ****************
 
 
   function init(){
@@ -70,8 +85,8 @@ ready(() => {
     gsap.set(["#OILPercent"], {alpha: 0});
     gsap.set(["#FUELPercent"], {alpha: 0});
     gsap.set(["#MPH"], {alpha: 0});
-    gsap.set(["#Fuel100"], {alpha: 0});
     gsap.set(["#Oil100"], {alpha: 0});
+
     gsap.set(["#MPH30"], {alpha: 0});
 
     //*********** Gauges2 init ****************
@@ -85,8 +100,43 @@ ready(() => {
     gsap.set(["#Speed9"], {alpha: 0});
     gsap.set(["#Speed10"], {alpha: 0});
     gsap.set(["#Speed10ALT"], {alpha: 0});
+
+    //*********** FuelTank init ****************
+
+    gsap.set(["#Fuel16"], {alpha: 0});
+    gsap.set(["#Fuel15"], {alpha: 0});
+    gsap.set(["#Fuel14"], {alpha: 0});
+    gsap.set(["#Fuel13"], {alpha: 0});
+    gsap.set(["#Fuel12"], {alpha: 0});
+    gsap.set(["#Fuel11"], {alpha: 0});
+    gsap.set(["#Fuel10"], {alpha: 0});
+    gsap.set(["#Fuel9"], {alpha: 0});
+    gsap.set(["#Fuel8"], {alpha: 0});
+    gsap.set(["#Fuel7"], {alpha: 0});
+    gsap.set(["#Fuel6"], {alpha: 0});
+    gsap.set(["#Fuel5"], {alpha: 0});
+    gsap.set(["#Fuel4"], {alpha: 0});
+    gsap.set(["#Fuel3"], {alpha: 0});
+    gsap.set(["#Fuel2"], {alpha: 0});
+
+    //*********** OilTank init ****************
     
-    
+    gsap.set(["#Oil16"], {alpha: 0});
+    gsap.set(["#Oil15"], {alpha: 0});
+    gsap.set(["#Oil14"], {alpha: 0});
+    gsap.set(["#Oil13"], {alpha: 0});
+    gsap.set(["#Oil12"], {alpha: 0});
+    gsap.set(["#Oil11"], {alpha: 0});
+    gsap.set(["#Oil10"], {alpha: 0});
+    gsap.set(["#Oil9"], {alpha: 0});
+    gsap.set(["#Oil8"], {alpha: 0});
+    gsap.set(["#Oil7"], {alpha: 0});
+    gsap.set(["#Oil6"], {alpha: 0});
+    gsap.set(["#Oil5"], {alpha: 0});
+    gsap.set(["#Oil4"], {alpha: 0});
+    gsap.set(["#Oil3"], {alpha: 0});
+    gsap.set(["#Oil2"], {alpha: 0});
+   
 
     //*********** Gears init ****************
     gsap.set(["#Drive_Alt"], {alpha: 0});
@@ -175,6 +225,9 @@ ready(() => {
       .to ("#Blinkers_On", {duration: 1, alpha: 0})
       .from ("#Speed1", {duration: 1, alpha: 0, repeat: 3},"Blinking")
       .from ("#Park_Alt", {duration: 1, alpha: 0, repeat: 3},"Blinking")
+      .from ("#Oil1", {duration: 1, alpha: 0, repeat: 3},"Blinking")
+      .from ("#Fuel1", {duration: 1, alpha: 0, repeat: 3},"Blinking")
+     
     
       
     ; 
@@ -193,6 +246,57 @@ ready(() => {
         .to ("#Speed1", {duration: 0.05, morphSVG: "#Speed8"})
         .to ("#Speed1", {duration: 0.05, morphSVG: "#Speed9"})
         .to ("#Speed1", {duration: 0.05, morphSVG: "#Speed10"})
+        
+        
+      ; 
+      return tl;
+    }
+
+    //*********** FuelREVTL ****************
+    function FuelREVTL(){
+      let tl = gsap.timeline();
+      tl .from ("#Fuel1ALT", {duration: 0.05, alpha: 0})
+        .to ("#Fuel1", {duration: 0.05, morphSVG: "#Fuel2"})
+        .to ("#Fuel1", {duration: 0.05, morphSVG: "#Fuel3"})
+        .to ("#Fuel1", {duration: 0.05, morphSVG: "#Fuel4"})
+        .to ("#Fuel1", {duration: 0.05, morphSVG: "#Fuel5"})
+        .to ("#Fuel1", {duration: 0.05, morphSVG: "#Fuel6"})
+        .to ("#Fuel1", {duration: 0.05, morphSVG: "#Fuel7"})
+        .to ("#Fuel1", {duration: 0.05, morphSVG: "#Fuel8"})
+        .to ("#Fuel1", {duration: 0.05, morphSVG: "#Fuel9"})
+        .to ("#Fuel1", {duration: 0.05, morphSVG: "#Fuel10"})
+        .to ("#Fuel1", {duration: 0.05, morphSVG: "#Fuel11"})
+        .to ("#Fuel1", {duration: 0.05, morphSVG: "#Fuel12"})
+        .to ("#Fuel1", {duration: 0.05, morphSVG: "#Fuel13"})
+        .to ("#Fuel1", {duration: 0.05, morphSVG: "#Fuel14"})
+        .to ("#Fuel1", {duration: 0.05, morphSVG: "#Fuel15"})
+        .to ("#Fuel1", {duration: 0.05, morphSVG: "#Fuel16"})
+        
+        
+      ; 
+      return tl;
+    }
+
+    //*********** OilREVTL ****************
+
+    function OilREVTL(){
+      let tl = gsap.timeline();
+      tl .from ("#Oil1ALT", {duration: 0.05, alpha: 0})
+        .to ("#Oil1", {duration: 0.05, morphSVG: "#Oill2"})
+        .to ("#Oil1", {duration: 0.05, morphSVG: "#Oil3"})
+        .to ("#Oil1", {duration: 0.05, morphSVG: "#Oil4"})
+        .to ("#Oil1", {duration: 0.05, morphSVG: "#Oil5"})
+        .to ("#Oil1", {duration: 0.05, morphSVG: "#Oil6"})
+        .to ("#Oil1", {duration: 0.05, morphSVG: "#Oil7"})
+        .to ("#Oil1", {duration: 0.05, morphSVG: "#Oil8"})
+        .to ("#Oil1", {duration: 0.05, morphSVG: "#Oil9"})
+        .to ("#Oil1", {duration: 0.05, morphSVG: "#Oil10"})
+        .to ("#Oil1", {duration: 0.05, morphSVG: "#Oil11"})
+        .to ("#Oil1", {duration: 0.05, morphSVG: "#Oil12"})
+        .to ("#Oil1", {duration: 0.05, morphSVG: "#Oil13"})
+        .to ("#Oil1", {duration: 0.05, morphSVG: "#Oil14"})
+        .to ("#Oil1", {duration: 0.05, morphSVG: "#Oil15"})
+        .to ("#Oil1", {duration: 0.05, morphSVG: "#Oil16"})
         
         
       ; 
@@ -218,19 +322,63 @@ ready(() => {
       return tl;
     }
 
-    //*********** Numbers1TL ****************
+    //*********** FuelSETTLETL ****************
 
-    function Numbers1TL(){
+    function FuelSETTLETL(){
       let tl = gsap.timeline();
-      tl.from ("#Speed200", {duration: 0.25, alpha: 0})
-      tl.to (PERC, {duration: 0.5,num: "+=200", roundProps: "num", onUpdate:percentHandler})
-      
+      tl.to ("#Fuel1", {duration: 0.05, morphSVG: "#Fuel15"})
+        .to ("#Fuel1", {duration: 0.05, morphSVG: "#Fuel14"})
+        .to ("#Fuel1", {duration: 0.05, morphSVG: "#Fuel13"})
+        .to ("#Fuel1", {duration: 0.05, morphSVG: "#Fuel12"})
+        .to ("#Fuel1", {duration: 0.05, morphSVG: "#Fuel11"})
+        .to ("#Fuel1", {duration: 0.05, morphSVG: "#Fuel10"})
+        .to ("#Fuel1", {duration: 0.05, morphSVG: "#Fuel9"})
+        .to ("#Fuel1", {duration: 0.05, morphSVG: "#Fuel8"})
+        .to ("#Fuel1", {duration: 0.05, morphSVG: "#Fuel7"})
+        
         
       ; 
       return tl;
     }
 
-    //*********** Numbers2TL ****************
+    //*********** OilSETTLETL ****************
+    function OilSETTLETL(){
+      let tl = gsap.timeline();
+      tl.to ("#Oil1", {duration: 0.05, morphSVG: "#Oil15"})
+        .to ("#Oil1", {duration: 0.05, morphSVG: "#Oil14"})
+        .to ("#Oil1", {duration: 0.05, morphSVG: "#Oil13"})
+        .to ("#Oil1", {duration: 0.05, morphSVG: "#Oil12"})
+        .to ("#Oil1", {duration: 0.05, morphSVG: "#Oil11"})
+
+        
+        
+      ; 
+      return tl;
+    }
+
+    //*********** Numbers1TL **************** (REV)
+
+    function Numbers1TL(){
+      let tl = gsap.timeline();
+      tl.from ("#Speed200", {duration: 0.25, alpha: 0})
+      tl.to (PERC, {duration: 0.5,num: "+=200", roundProps: "num", onUpdate:percentHandler})
+    
+      ; 
+      return tl;
+    }
+
+    //***********FuelNumbers1TL **************** (REV)
+
+    function FuelNumbers1TL(){
+      let tl = gsap.timeline();
+      tl.from ("#Fuel100", {duration: 0.25, alpha: 0})
+      tl.to (FUELG, {duration: 0.5,num: "+=100", roundProps: "num", onUpdate:FuelHandler})
+      
+        
+      ; 
+      return tl;
+    }
+    //*********** Numbers2TL **************** (SETTLE)
     function Numbers2TL(){
       let tl = gsap.timeline();
       tl.to (PERC, {duration: 0.5,num: "-=200", roundProps: "num", onUpdate:percentHandler})
@@ -255,8 +403,13 @@ ready(() => {
         .add(GearShiftTL(),"-=1")
         .add(BlinkersTL(),"-=3")
         .add(Numbers1TL(), "speed")
+        .add(FuelNumbers1TL(), "speed")
         .add(GaugesREVTL(), "speed")
+        .add(FuelREVTL(), "speed")
+        .add(OilREVTL(), "speed")
         .add(GaugesSETTLETL(),"+=0.5")
+        .add(FuelSETTLETL(),"-=1")
+        .add(OilSETTLETL(),"-=1")
         .add(Numbers2TL(),"-=0.5")
         
         

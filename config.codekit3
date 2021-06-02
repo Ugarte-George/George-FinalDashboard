@@ -56,11 +56,11 @@
       "oAP" : "\/design\/George_FinalDashboardSKETCH.sketch",
       "oF" : 0
     },
-    "\/design\/George_FinalDashboardSVG.svg" : {
+    "\/design\/George_FinalDashboardSVG (1).svg" : {
       "ft" : 2097152,
       "miP" : 0,
       "oA" : 2,
-      "oAP" : "\/design\/George_FinalDashboardSVG.svg",
+      "oAP" : "\/design\/George_FinalDashboardSVG (1).svg",
       "oF" : 0,
       "opt" : 0,
       "plM" : 52780316221407,
@@ -80,6 +80,14 @@
       "hM" : 0,
       "oA" : 1,
       "oAP" : "\/dev\/content\/svg\/Background.html",
+      "oF" : 0
+    },
+    "\/dev\/content\/svg\/FuelLevels.kit" : {
+      "cB" : 0,
+      "ft" : 2048,
+      "hM" : 0,
+      "oA" : 1,
+      "oAP" : "\/dev\/content\/svg\/FuelLevels.html",
       "oF" : 0
     },
     "\/dev\/content\/svg\/GaugeLevels.kit" : {
@@ -104,6 +112,14 @@
       "hM" : 0,
       "oA" : 1,
       "oAP" : "\/dev\/content\/svg\/Main_Interface.html",
+      "oF" : 0
+    },
+    "\/dev\/content\/svg\/OilLevels.kit" : {
+      "cB" : 0,
+      "ft" : 2048,
+      "hM" : 0,
+      "oA" : 1,
+      "oAP" : "\/dev\/content\/svg\/OilLevels.html",
       "oF" : 0
     },
     "\/dev\/content\/svg\/ShiftGears.kit" : {
