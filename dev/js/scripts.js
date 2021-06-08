@@ -32,6 +32,7 @@ ready(() => {
 
   /* add your code here */
   let mainTL = gsap.timeline({id:"main"});
+  let CloudFloatTL = gsap.timeline({paused:"true"});
 
     //*********** Speedometer ****************
 
@@ -68,6 +69,7 @@ ready(() => {
   OILG_num.textContent=OILG.num
 
   }
+
 
   function init(){
     //***********  LogoStartTL init ****************
@@ -146,18 +148,16 @@ ready(() => {
    
 
     //*********** Gears init ****************
-    gsap.set(["#Drive_Alt"], {alpha: 0});
-    gsap.set(["#Neutral_Alt"], {alpha: 0});
-    gsap.set(["#Reverse_Alt"], {alpha: 0});
   
 
     //*********** Blinkers init ****************
 
     //*********** TopUI init ****************
 
-    gsap.set(["#Call_UI"], {alpha: 0});
-    gsap.set(["#TopUIMain"], {y: -200});
 
+    gsap.set(["#TopUIMain"], {y: -200});
+    gsap.set(["#Phone_Connector"], {drawSVG: "0%"});
+    gsap.set(["#PhoneCallBackground"], {scale:0, transformOrigin: "top center"});
 
   }
 
@@ -208,9 +208,10 @@ ready(() => {
   //*********** TopUIStartTL ****************
   function TopUIStartTL(){
     let tl = gsap.timeline();
-    tl.to ("#TopUIMain", {duration: 1, y: -1})
+    tl.to ("#TopUIMain", {duration: 1, y: -1}, "hotfix")
+      .from ("#Phone_fill",{alpha: 0, duration: 0.05}, "hotfix")
       .from ("#time",{alpha: 0, duration: 1}, "fadeIN")
-      .from ("#Weather",{alpha: 0}, "fadeIN")
+      .from ("#Weather",{alpha: 0, OnComplete: CloudFloat}, "fadeIN")
       
     ; 
     return tl;
@@ -227,13 +228,13 @@ ready(() => {
   //*********** BlinkersTL ****************
   function BlinkersTL(){
     let tl = gsap.timeline();
-    tl.from ("#Blinkers_Off", {duration: 2, alpha: 0})
-      .from ("#Blinkers_On", {duration: 1, alpha: 0, repeat: 3},"Blinking")
-      .to ("#Blinkers_On", {duration: 1, alpha: 0})
-      .from ("#Speed1", {duration: 1, alpha: 0, repeat: 3},"Blinking")
-      .from ("#Park_Alt", {duration: 1, alpha: 0, repeat: 3},"Blinking")
-      .from ("#Oil1", {duration: 1, alpha: 0, repeat: 3},"Blinking")
-      .from ("#Fuel1", {duration: 1, alpha: 0, repeat: 3},"Blinking")
+    tl.from ("#Blinkers_Off", {duration: 1, alpha: 0})
+      .from ("#Blinkers_On", {duration: 0.5, alpha: 0, repeat: 3},"Blinking")
+      .to ("#Blinkers_On", {duration: 0.5, alpha: 0})
+      .from ("#Speed1", {duration: 0.5, alpha: 0, repeat: 3},"Blinking")
+      .from ("#Park_Alt", {duration: 0.5, alpha: 0, repeat: 3},"Blinking")
+      .from ("#Oil1", {duration: 0.5, alpha: 0, repeat: 3},"Blinking")
+      .from ("#Fuel1", {duration: 0.5, alpha: 0, repeat: 3},"Blinking")
      
     
       
@@ -386,7 +387,7 @@ ready(() => {
       return tl;
     }
 
-    //***********FuelNumbers2TL **************** (REV)
+    //***********FuelNumbers2TL **************** (SETTLE)
 
     function FuelNumbers2TL(){
       let tl = gsap.timeline();
@@ -409,7 +410,7 @@ ready(() => {
         return tl;
       }
 
-    //***********OilNumbers2TL **************** (REV)
+    //***********OilNumbers2TL **************** (SETTLE)
 
       function OilNumbers2TL(){
         let tl = gsap.timeline();
@@ -430,11 +431,86 @@ ready(() => {
       return tl;
     }
 
+    //*********** GearShift2TL **************** 
+    function GearShift2TL(){
+      let tl = gsap.timeline();
+      tl.to ("#Park_Alt", {duration: 0.5, alpha: 0})
+        .from ("#Reverse_Alt", {duration: 0.25, alpha: 0})
+        .to ("#Reverse_Alt", {duration: 0.25, alpha: 0})
+        .from ("#Neutral_Alt", {duration: 0.25, alpha: 0})
+        .to ("#Neutral_Alt", {duration: 0.25, alpha: 0})
+        .from ("#Drive_Alt", {duration: 0.25, alpha: 0})
+      
+      
+      
+        
+      ; 
+      return tl;
+    }
+
+    //*********** Numbers3TL **************** 
+    function Numbers3TL(){
+      let tl = gsap.timeline();
+      tl.from ("#Speed200", {duration: 0.25})
+      tl.to (PERC, {duration: 1,num: "+=30", roundProps: "num", onUpdate:percentHandler, ease: "expo"})
+    
+      ; 
+      return tl;
+    }
+
+     //*********** GaugesREV2TL ****************
+     function GaugesREV2TL(){
+      let tl = gsap.timeline();
+      tl .to ("#Speed1ALT", {duration: 0.05, alpha: 100},"new")
+         .to ("#Speed1", {duration: 0.05, alpha: 100},"new")
+        .to ("#Speed1", {duration: 0.5, morphSVG: "#Speed2"})
+        .to ("#Speed1", {duration: 0.5, morphSVG: "#Speed3"})
+
+        
+        
+      ; 
+      return tl;
+    }
+
+     //*********** CallUITL ****************
+     function CallUITL(){
+      let tl = gsap.timeline();
+      tl.to ("#Phone_fill", {duration: 0.75, alpha: 0, repeat: 3})
+        .to ("#Phone_Connector", {duration: 1, drawSVG: true})
+        .to ("#PhoneCallBackground", {duration: 1, scale: 1})
+        .from ("#Phone_Answer", {duration: 0.5, alpha: 0},"PhoneFade")
+        .from ("#Phone_Hangup", {duration: 0.5, alpha: 0},"PhoneFade")
+        .from ("#Calling", {duration: 0.5, alpha: 0},"PhoneFade")
+
+        
+        
+      ; 
+      return tl;
+    }
   //1. set initial properties
   init();
 
   //2. show content - prevents FOUC
   gsap.set('#svg-container',{visibility:"visible"});
+
+  //CallBack
+
+  function CloudFloat (){
+
+    console.log ('SHOW TIME');
+    gsap.set(".Weather", {display:"block"});
+    CloudFloatTL.to ("#Weather",{duration:1.5, y: "-= 15"})
+                .to ("#Weather",{duration:1.5, y: "+=15"})
+                .to ("#Weather",{duration:1.5, y: "-=15"})
+                .to ("#Weather",{duration:1.5, y: "+=15"})
+                .to ("#Weather",{duration:1.5, y: "-=15"})
+                .to ("#Weather",{duration:1.5, y: "+=15"})
+                .to ("#Weather",{duration:1.5, y: "-=15"})
+                .to ("#Weather",{duration:1.5, y: "+=15"}) 
+
+    CloudFloatTL.play()
+
+  }
 
   //3. BUILD Main timeline
   mainTL.add(LogoStartTL())
@@ -455,6 +531,10 @@ ready(() => {
         .add(Numbers2TL(),"-=0.5")
         .add(OilNumbers2TL(),"-=1")
         .add(FuelNumbers2TL(),"-=1")
+        .add(GearShift2TL())
+        .add(Numbers3TL(), "speed2")
+        .add(GaugesREV2TL(), "speed2")
+        .add(CallUITL())
         
         
      
